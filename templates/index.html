@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		
+		<!-- Webpage Title -->
+    <title>Spider Man!</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<!-- JS -->		
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+
+    <style>
+      *{
+        font-size : large;
+      }
+
+      div.mg_ct{
+        margin : auto 20px auto 20px;
+      }
+
+      div.mg_ct2{
+        margin : auto 60px auto 60px;
+      }
+
+      img.main_pdt{
+        display: block; 
+        margin: 10px auto;  
+        max-width: 540px;
+        max-height: 360px;
+      }
+      
+
+      label.main{
+        font-size: xx-large;
+        font-weight: bold;
+      }
+
+      label.left_sp{
+        margin-left:40px;
+      }
+
+      div.left_sp2{
+        margin-left:60px;
+      }
+
+      div.bt{
+        text-align:center;
+      }
+
+    </style>
+
+
+    <!-- 여기서부터 ajax 통신작성 -->
+    <script> 
+
+
+      function save_order(){
+        $.ajax({
+          type: "POST",
+          url: "/post",
+          data: { name_give: $('#order-name').val()
+                  ,quan_give:$('#order-quan').val()
+                  ,address_give:$('#order-address').val()
+                  ,contact_give:$('#order-contact').val()
+                },
+          success: function(response){ // 성공하면
+            if (response['result'] == 'success') {
+              alert('주문 성공!')
+              window.location.reload();
+            } else {
+              alert('서버 오류!')
+            }
+          }
+
+
+        })
+      }
+
+
+
+
+
+    </script>
+
+
+  </head>
+  <body>
+    <div>
+      <!-- img를 삽입하는게 아니라, div에 배경을 이미지로 채워도 됨 -->
+      <img class = 'main_pdt' src="https://wegotthiscovered.com/wp-content/uploads/2019/06/Spider-Man-Far-From-Home-3.jpg" alt="My Image">
+    </div>
+
+    <div class = 'mg_ct'>
+     <label class ='main left_sp' for="exampleInputEmail1">Spider man suite Sale!</label>
+     <label class ='left_sp' for="exampleInputEmail1">price : 1,000$ / per</label>
+    </div>
+
+    <div class = 'mg_ct'>
+     <label class ='left_sp' for="exampleInputEmail1">이 상품으로 말하자면... 이걸 사서 입으시면
+     MCU 스파이더맨 팬 인증과 더불어 친구들 사이에서 인싸가 되실 수 있습니다.</label>
+    </div>
+
+    <div class = 'mg_ct'>
+     <label class ='main left_sp' for="exampleInputEmail1"> </label>
+    </div>
+
+    <div class = 'mg_ct'>
+     <label class ='main left_sp' for="exampleInputEmail1">주문하기</label>
+    </div>
+  
+  <form>
+    <div class="form-group row left_sp2 col-md-10">
+      <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">주문자 성함 :</label>
+      <div class="col-sm-6">
+        <input id ='order-name' class="form-control" placeholder="이름">
+      </div>
+    </div>
+
+    <div class="form-group row left_sp2 col-md-10">
+      <label for="exampleFormControlTextarea1"class="col-sm-2 col-form-label">수량 : </label>
+      <div class="col-sm-6">
+        <select id ='order-quan' class="form-control" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row left_sp2 col-md-10">
+      <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">주소 :</label>
+      <div class="col-sm-6">
+        <input id ='order-address' class="form-control" placeholder="주소를 입력해주세요">
+      </div>
+    </div>
+
+    <div class="form-group row left_sp2 col-md-10">
+      <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">전화번호 :</label>
+      <div class="col-sm-6">
+        <input id ='order-contact' class="form-control" placeholder="연락처를 입력해주세요">
+      </div>
+    </div>
+
+
+    <div class="form-group row bt">
+      <div class="col-sm-12">
+        <button onclick="save_order()" type="submit" class="btn btn-primary">주문하기</button>
+      </div>
+    </div>
+
+  </form>
+
+
+  </body>
+</html>
